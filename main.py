@@ -68,14 +68,15 @@ def persistent_config(cfg_dic):
     fp.close()
 
 def transform(datas):
-    tag=["server","server_port","password","method"]
-    d1 ={"remarks":""}
-    d2 ={"remarks":""}
-    d3 ={"remarks":""}
+    tag=["server","server_port","password","method","remarks"]
+    d1 = dict()
+    d2 = dict()
+    d3 = dict()
     l = [d1,d2,d3]
     for i in range(3):
         for j in range(4):
             l[i][tag[j]]=datas[j]
+        l[i][tag[j+1]]=''
     print '\n\n######New Server Config Generate######'
     print l
     return l
