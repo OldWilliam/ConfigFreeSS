@@ -73,9 +73,11 @@ def transform(datas):
     d2 = dict()
     d3 = dict()
     l = [d1,d2,d3]
+    index = 0
     for i in range(3):
         for j in range(4):
-            l[i][tag[j]]=datas[j]
+            l[i][tag[j]]=datas[index]
+            index = index + 1
         l[i][tag[j+1]]=''
     print '\n\n######New Server Config Generate######'
     print l
