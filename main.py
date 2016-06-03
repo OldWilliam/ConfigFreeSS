@@ -21,8 +21,8 @@ def perform():
     print '\n\n######key data has been combined to a list######'
     for i in datas:
         print i
-    handle_pack(datas)
-    cfg_dic =  retrieve_config()
+    new_server_cfg = handle_pack(datas)
+    cfg_dic = retrieve_config()
     print '\n\n######old config file retrieved######'
     #Complete Cofig file include useless item(type:dict)
     print cfg_dic
@@ -34,6 +34,7 @@ def perform():
     le = len(server_cfg)
     for j in range(le):
         server_cfg.pop(le-j-1)
+    server_cfg.extend(new_server_cfg)
     print'\n\n######test'
     print cfg_dic
 
@@ -73,6 +74,7 @@ def handle_pack(datas):
             l[i][tag[j]]=datas[j]
     print '\n\n######The New'
     print l
+    return l
 
 
 
