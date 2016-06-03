@@ -63,7 +63,7 @@ def retrieve_config(path=config_path):
 
 def persistent_config(cfg_dic):
     f = json.dumps(cfg_dic)
-    fp = open('haha.txt','w')
+    fp = open(config_path,'w')
     fp.write(f)
     fp.close()
 
