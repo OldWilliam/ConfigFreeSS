@@ -43,7 +43,7 @@ def perform():
     print cfg_dic
 
     #persistent config file
-    persistent_config(cfg_dic):
+    persistent_config(cfg_dic)
 
 def not_empty(s):
     return s and s.strip()
