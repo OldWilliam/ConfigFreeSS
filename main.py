@@ -30,8 +30,9 @@ def perform():
     server_cfg = cfg_dic['configs']
     for i in server_cfg:
         print i
-        for j in range(len(server_cfg)):
-            server_cfg.pop(j)
+    len = len(server_cfg)
+    for j in range(len):
+        server_cfg.pop(len-j-1)
     print'\n\n######test'
     print cfg_dic
 
