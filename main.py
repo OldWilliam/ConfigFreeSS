@@ -31,6 +31,7 @@ def perform():
     for i in server_cfg:
         print i
     server_cfg = []
+    print'\n\n######test'
     print cfg_dic
 
 
