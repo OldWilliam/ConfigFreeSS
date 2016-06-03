@@ -21,6 +21,7 @@ def perform():
     print '\n\n######key data has been combined to a list######'
     for i in datas:
         print i
+    handle_pack(datas)
     cfg_dic =  retrieve_config()
     print '\n\n######old config file retrieved######'
     #Complete Cofig file include useless item(type:dict)
@@ -35,6 +36,7 @@ def perform():
         server_cfg.pop(le-j-1)
     print'\n\n######test'
     print cfg_dic
+
 
 
 
@@ -56,9 +58,23 @@ def retrieve_config(path=config_path):
     dict_cfg = json.loads(f)
     return dict_cfg
 
-def persistent_config(cfg_dic):
+def opersistent_config(cfg_dic):
     fp = open(path,'w')
     fp.write()
+
+def handle_pack(datas):
+    tag=["server","server_port","password","method"]
+    d1 ={"remarks":""}
+    d2 ={"remarks":""}
+    d3 ={"remarks":""}
+    l = [d1,d2,d3]
+    for i in range(3):
+        for j in range(4):
+            l[i][tag[j]]=datas[j]
+    print '\n\n######The New'
+    print l
+
+
 
 if __name__ == '__main__':
     perform()
