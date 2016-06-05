@@ -2,10 +2,12 @@
 from MyHtmlParser import MyHtmlParser
 import urllib
 import json
+import os
 import phone_config
 
-config_entry={"server":"","server_port":443,"password":"","method":"aes-256-cfb","remarks":""}
-config_path ="/cygdrive/c/Software/shadowsocks/gui-config.json"
+config_entry = {"server":"","server_port":443,"password":"","method":"aes-256-cfb","remarks":""}
+cygwin_path = "/cygdrive/c/Software/shadowsocks/gui-config.json"
+win_path = "C://Software//shadowsocks//gui-config.json"
 
 def perform():
     parser = MyHtmlParser()
@@ -26,12 +28,8 @@ def perform():
 
     #generate phone config file
     phone_config.main(datas)
-
-
-
-
-
-
+    #generate pc config file
+    pc_config(datas)
 def not_empty(s):
     return s and s.strip()
 
@@ -41,13 +39,17 @@ def has_colon(s):
 def cut_after_colon(s):
     return s[s.index(':')+1:]
 
-
 def pc_config(datas):
+    if os.name == 'nt':
+        config_path = cygwin_path
+    if os.name == 'posix':
+        config_path = win_path
+
     #transform the list to the correct format that a list contain three dic
     new_server_cfg = transform(datas)
 
     #complete config file include useless item from the disk(type:dict)
-    cfg_dic = retrieve_config()
+    cfg_dic = retrieve_config(config_path)
 
     #key SS config Segment(type:list)
     server_cfg = cfg_dic['configs']
@@ -63,7 +65,7 @@ def pc_config(datas):
     print cfg_dic
 
     #persistent config file
-    persistent_config(cfg_dic)
+    persistent_config(cfg_dic,config_path)
 
 def transform(datas):
     tag=["server","server_port","password","method","remarks"]
@@ -81,16 +83,16 @@ def transform(datas):
     print l
     return l
 
-def retrieve_config(path=config_path):
+def retrieve_config(path):
     fp = open(path,'r')
     f = fp.read()
     fp.close()
     dict_cfg = json.loads(f)
     return dict_cfg
 
-def persistent_config(cfg_dic):
+def persistent_config(cfg_dic,path):
     f = json.dumps(cfg_dic)
-    fp = open(config_path,'w')
+    fp = open(path,'w')
     fp.write(f)
     fp.close()
 
