@@ -1,4 +1,3 @@
-
 from MyHtmlParser import MyHtmlParser
 import urllib
 import json
@@ -6,7 +5,7 @@ import os
 import phone_config
 
 config_entry = {"server":"","server_port":443,"password":"","method":"aes-256-cfb","remarks":""}
-cygwin_path = "/cygdrive/c/Software/shadowsocks/gui-config.json"
+#cygwin_path = "/cygdrive/c/Software/shadowsocks/gui-config.json"
 win_path = "C://Software//shadowsocks//gui-config.json"
 
 def perform():
@@ -40,9 +39,10 @@ def cut_after_colon(s):
     return s[s.index(':')+1:]
 
 def pc_config(datas):
-    if os.name == 'posix':
-        config_path = cygwin_path
-    if os.name == 'nt':
+    os.system('taskkill /im Shadowsocks.exe /T /F')
+#    if os.name == 'posix':
+#        config_path = cygwin_path
+#    if os.name == 'nt':
         config_path = win_path
 
     #transform the list to the correct format that a list contain three dic
@@ -66,6 +66,7 @@ def pc_config(datas):
 
     #persistent config file
     persistent_config(cfg_dic,config_path)
+    os.startfile('C://Software//shadowsocks//Shadowsocks.exe')
 
 def transform(datas):
     tag=["server","server_port","password","method","remarks"]
