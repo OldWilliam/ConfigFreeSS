@@ -40,10 +40,7 @@ def cut_after_colon(s):
 
 def pc_config(datas):
     os.system('taskkill /im Shadowsocks.exe /T /F')
-#    if os.name == 'posix':
-#        config_path = cygwin_path
-#    if os.name == 'nt':
-        config_path = win_path
+    config_path = win_path
 
     #transform the list to the correct format that a list contain three dic
     new_server_cfg = transform(datas)
