@@ -8,6 +8,7 @@
 import base64
 import urllib
 import json
+import webbrowser
 
 apikey = '20160605147782'
 qr_api = 'http://api.wwei.cn/wwei.html'
@@ -34,6 +35,7 @@ def main(origin):
     f.close()
     response_dic = json.loads(json_str)
     qr_url = response_dic['data']['qr_filepath']
+    webbrowser.open(qr_url)
     print qr_url
 
 
