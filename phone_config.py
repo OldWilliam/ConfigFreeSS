@@ -29,6 +29,10 @@ def main(origin):
     data = combine(origin)
     data = encrypt(data)
     data = 'ss://'+ data
+    fp = open('copytophone.txt','w')
+    fp.write(data)
+    fp.close()
+
     params = urllib.urlencode({'data':data,'apikey':apikey})
     f = urllib.urlopen(qr_api,params)
     json_str =  f.read()
