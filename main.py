@@ -72,7 +72,7 @@ def transform(datas):
     d3 = dict()
     l = [d1,d2,d3]
     index = 0
-    for i in range(3):
+    for i in range(1):
         for j in range(4):
             l[i][tag[j]]=datas[index]
             index = index + 1
