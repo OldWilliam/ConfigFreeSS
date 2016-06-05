@@ -2,6 +2,7 @@
 from MyHtmlParser import MyHtmlParser
 import urllib
 import json
+import phone_config
 
 config_entry={"server":"","server_port":443,"password":"","method":"aes-256-cfb","remarks":""}
 config_path ="/cygdrive/c/Software/shadowsocks/gui-config.json"
@@ -44,6 +45,12 @@ def perform():
 
     #persistent config file
     persistent_config(cfg_dic)
+
+    #generate phone config file
+    phone_config.main(datas)
+
+
+
 
 def not_empty(s):
     return s and s.strip()
