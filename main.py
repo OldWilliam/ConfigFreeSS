@@ -24,6 +24,25 @@ def perform():
     for i in datas:
         print i
 
+    #generate phone config file
+    phone_config.main(datas)
+
+
+
+
+
+
+def not_empty(s):
+    return s and s.strip()
+
+def has_colon(s):
+    return ':' in s
+
+def cut_after_colon(s):
+    return s[s.index(':')+1:]
+
+
+def pc_config(datas):
     #transform the list to the correct format that a list contain three dic
     new_server_cfg = transform(datas)
 
@@ -46,34 +65,6 @@ def perform():
     #persistent config file
     persistent_config(cfg_dic)
 
-    #generate phone config file
-    phone_config.main(datas)
-
-
-
-
-def not_empty(s):
-    return s and s.strip()
-
-def has_colon(s):
-    return ':' in s
-
-def cut_after_colon(s):
-    return s[s.index(':')+1:]
-
-def retrieve_config(path=config_path):
-    fp = open(path,'r')
-    f = fp.read()
-    fp.close()
-    dict_cfg = json.loads(f)
-    return dict_cfg
-
-def persistent_config(cfg_dic):
-    f = json.dumps(cfg_dic)
-    fp = open(config_path,'w')
-    fp.write(f)
-    fp.close()
-
 def transform(datas):
     tag=["server","server_port","password","method","remarks"]
     d1 = dict()
@@ -90,7 +81,18 @@ def transform(datas):
     print l
     return l
 
+def retrieve_config(path=config_path):
+    fp = open(path,'r')
+    f = fp.read()
+    fp.close()
+    dict_cfg = json.loads(f)
+    return dict_cfg
 
+def persistent_config(cfg_dic):
+    f = json.dumps(cfg_dic)
+    fp = open(config_path,'w')
+    fp.write(f)
+    fp.close()
 
 if __name__ == '__main__':
     perform()
