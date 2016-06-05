@@ -10,7 +10,7 @@ import urllib
 import json
 
 apikey = '20160605147782'
-qr_api = 'api.wwei.cn/wwei.html'
+qr_api = 'http://api.wwei.cn/wwei.html'
 
 #parama:list
 #return:str
